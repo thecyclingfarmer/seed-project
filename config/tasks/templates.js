@@ -6,7 +6,7 @@ module.exports = function (gulp, plugins) {
     gulp.task('templates', function (cb) {
       gulp.src('app/**/*.template')
         .pipe(flatten())
-        .pipe(gulp.dest('./build/templates'));
+        .pipe(gulp.dest(process.env.BUILD_PATH + 'templates'));
         cb();
     });
   };

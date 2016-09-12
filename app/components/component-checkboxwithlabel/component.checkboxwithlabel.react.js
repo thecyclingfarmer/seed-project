@@ -1,13 +1,14 @@
-'use strict';
+import React from 'react';
 
-import React from 'react/addons';
 class CheckboxWithLabel extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isChecked: this.props.isChecked };
   }
 
-  onChange = (e) => this.setState({isChecked: !this.state.isChecked});
+  onChange(e) {
+    this.setState({isChecked: !this.state.isChecked});
+  }
 
   render() {
     return (

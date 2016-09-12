@@ -3,6 +3,8 @@ var browserify = require('browserify'),
     babelify = require('babelify'),
     flatten = require('gulp-flatten');
 
+require('dotenv').config();
+
 module.exports = function (gulp, plugins) {
   return function () {
     gulp.task('js', function (cb) {
@@ -11,12 +13,12 @@ module.exports = function (gulp, plugins) {
         	debug: true
         })
         .transform(babelify.configure({
-    		  stage: 0 //Use ES7 transforms
+          presets: ['es2015', 'react'],
         }))
         .bundle()
         .pipe(source('app/framework/app.js'))
         .pipe(flatten())
-        .pipe(gulp.dest('./build/js'));
+        .pipe(gulp.dest(process.env.BUILD_PATH + 'js'));
         cb();
     });
   };

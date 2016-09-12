@@ -4,6 +4,7 @@ var assemble = require('fabricator-assemble'),
     handlebars = require('handlebars'),
     flatten = require('gulp-flatten');
 
+require('dotenv').config();
 //ASSEMBLE
 module.exports = function (gulp, plugins) {
   return function () {
@@ -17,22 +18,22 @@ module.exports = function (gulp, plugins) {
     });
 
     gulp.task('del', function () {
-      del('build/tempmockups');
+      del(process.env.BUILD_PATH + 'tempmockups');
     });
 
     gulp.task('flatten', function () {
-      gulp.src('build/tempmockups/**/*.html')
+      gulp.src(process.env.BUILD_PATH + 'tempmockups/**/*.html')
         .pipe(flatten())
-        .pipe(gulp.dest('build/mockups'));
+        .pipe(gulp.dest(process.env.BUILD_PATH + 'mockups'));
     });
 
     gulp.task('buildmocks', function () {
       var options = {
           layout: 'default',
-          layouts: 'app/framework/*',
+          layouts: process.env.MOCK_LAYOUT,
           layoutIncludes: 'app/framework/includes/*.html',
-          views: ['app/pages/**/*.html'],
-          materials: ['app/blocks/**/*.html', 'app/components/**/*.html'],
+          views: process.env.MOCK_PAGES,
+          materials: process.env.MOCK_COMPONENTS,
           data: 'config/*.{json,yml}',
           docs: 'docs/**/*.md',
           keys: {
@@ -45,7 +46,7 @@ module.exports = function (gulp, plugins) {
           onError: function(error) {
             //console.log(error);
           },
-          dest: 'build/tempmockups'
+          dest: process.env.BUILD_PATH + 'tempmockups'
       };
 
       return assemble(options);
