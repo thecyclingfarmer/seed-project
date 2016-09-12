@@ -17,11 +17,11 @@ module.exports = function (gulp, plugins) {
     });
 
     gulp.task('del', function () {
-      del(process.env.BUILD_PATH + 'tempmockups');
+      return del(process.env.BUILD_PATH + 'tempmockups');
     });
 
     gulp.task('flatten', function () {
-      gulp.src(process.env.BUILD_PATH + 'tempmockups/**/*.html')
+      return gulp.src(process.env.BUILD_PATH + 'tempmockups/**/*.html')
         .pipe(flatten())
         .pipe(gulp.dest(process.env.BUILD_PATH + 'mockups'));
     });
