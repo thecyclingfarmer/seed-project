@@ -4,7 +4,6 @@ var assemble = require('fabricator-assemble'),
     handlebars = require('handlebars'),
     flatten = require('gulp-flatten');
 
-require('dotenv').config();
 //ASSEMBLE
 module.exports = function (gulp, plugins) {
   return function () {
@@ -30,10 +29,10 @@ module.exports = function (gulp, plugins) {
     gulp.task('buildmocks', function () {
       var options = {
           layout: 'default',
-          layouts: process.env.MOCK_LAYOUT,
+          layouts: 'app/framework/*',
           layoutIncludes: 'app/framework/includes/*.html',
-          views: process.env.MOCK_PAGES,
-          materials: process.env.MOCK_COMPONENTS,
+          views: ['app/pages/**/*.html'],
+          materials: ['app/blocks/**/*.html', 'app/components/**/*.html'],
           data: 'config/*.{json,yml}',
           docs: 'docs/**/*.md',
           keys: {
