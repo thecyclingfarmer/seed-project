@@ -14,6 +14,9 @@ gulp.task('connect', require('./config/tasks/connect')(gulp, plugins));
 //ASSEMBLE
 gulp.task('assemble', require('./config/tasks/assemble')(gulp, plugins));
 
+//COPY
+gulp.task('copy', require('./config/tasks/copy')(gulp, plugins));
+
 //CLEAN
 gulp.task('clean', require('./config/tasks/clean')(gulp, plugins));
 
