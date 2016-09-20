@@ -13,14 +13,14 @@ module.exports = (gulp, plugins) => {
 
     //COPY.IMAGES
     gulp.task('copy.images', (cb) => {
-      gulp.src('./app/framework/images/**/*', { base: './app/framework/images' })
+      gulp.src(process.env.MOCK_IMAGES + '**/*', { base: process.env.MOCK_IMAGES })
         .pipe(gulp.dest(process.env.BUILD_PATH + 'images'));
       cb();
     });
 
     //COPY.FONTS
     gulp.task('copy.fonts', (cb) => {
-      gulp.src('./app/framework/fonts/**/*', { base: './app' })
+      gulp.src(process.env.MOCK_FONTS + '**/*', { base: process.env.MOCK_FONTS })
         .pipe(gulp.dest(process.env.BUILD_PATH + 'fonts'));
       cb();
     });
