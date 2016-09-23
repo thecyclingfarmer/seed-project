@@ -17,7 +17,9 @@ module.exports = function (gulp, plugins) {
     });
 
     gulp.task('del', function () {
-      return del(process.env.BUILD_PATH + 'tempmockups');
+      return del(process.env.BUILD_PATH + 'tempmockups', {
+        force: true
+      });
     });
 
     gulp.task('flatten', function () {
