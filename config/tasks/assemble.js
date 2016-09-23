@@ -29,12 +29,14 @@ module.exports = function (gulp, plugins) {
     });
 
     gulp.task('buildmocks', function () {
+      var materials = process.env.MOCK_COMPONENTS.split(',');
+      var pages = [process.env.MOCK_PAGES];
       var options = {
           layout: 'default',
           layouts: 'app/framework/*',
           layoutIncludes: 'app/framework/includes/*.html',
-          views: ['app/pages/**/*.html'],
-          materials: ['app/blocks/**/*.html', 'app/components/**/*.html'],
+          views: pages,
+          materials: materials,
           data: 'config/*.{json,yml}',
           docs: 'docs/**/*.md',
           keys: {
@@ -45,7 +47,7 @@ module.exports = function (gulp, plugins) {
           helpers: require('../../bower_components/knowit-ninja/helpers')(handlebars),
           logErrors: false,
           onError: function(error) {
-            //console.log(error);
+            console.log(error);
           },
           dest: process.env.BUILD_PATH + 'tempmockups'
       };
